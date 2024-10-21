@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manejo de Funciones</title>
+    <style>
+        body {
+            margin: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .vuelta {
+            position: absolute;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: -45px;
+            margin-left: -250px;
+        }
+        .vuelta:hover {
+            text-decoration: underline;
+        }
+        h1 {
+            text-align: center;
+        }
+        .box {
+            text-align: center;
+            background-color: #ece3e3;
+            padding: 30px;
+            border-radius: 10px;
+        }
+        select {
+            padding: 10px;
+            width: 15%;
+        }
+        input {
+            padding: 10px;
+            margin-top: 10px;
+            width: 100%;
+            max-width: 450px;
+        }
+        button {
+            padding: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Menú de Funciones</h1>
+    <a class="vuelta" href="../indice3.html">Volver</a>
+    <section class="box">
+    <select id="opcion">
+        <option value="0">Seleccionar Opción</option>
+        <option value="1">Factorial</option>
+        <option value="2">Sumar Números</option>
+        <option value="3">Información</option>
+        <option value="4">Factorial Recursivo</option>
+    </select>
+    <input type="text" id="inputValor">
+    <button onclick="ejecutarOpcion()">Ejecutar</button>
+    <div class="result" id="resultado"></div>
+    </section>
+
+    <script>
+        function ejecutarOpcion() {
+            const opcion = document.getElementById("opcion").value;
+            const valor = document.getElementById("inputValor").value;
+            const resultadoDiv = document.getElementById("resultado");
+            resultadoDiv.innerText = ""; // Para limpiar los resultados anteriores
+
+            switch (opcion) {
+                case "1":
+                    const numero = parseInt(valor);
+                    if (isNaN(numero) || numero < 0) {
+                        resultadoDiv.innerText = "Ingrese un número entero no negativo.";
+                    } else {
+                        resultadoDiv.innerText = `El factorial de ${numero} es ${factorial(numero)}.`;
+                    }
+                    break;
+
+                case "2":
+                    const numeros = valor.split(',').map(num => parseFloat(num.trim()));
+                    if (numeros.some(isNaN)) {
+                        resultadoDiv.innerText = "Ingrese números separados por comas.";
+                    } else {
+                        resultadoDiv.innerText = `La suma es: ${suma(...numeros)}.`;
+                    }
+                    break;
+
+                case "3":
+                    const infoValores = valor.split(',');
+                    const nombre = infoValores[0] ? infoValores[0].trim() : "Nombre no proporcionado";
+                    const localidad = infoValores[1] ? infoValores[1].trim() : "LAS PALMAS DE G.C.";
+                    const valorInfo = infoValores[2] ? parseFloat(infoValores[2].trim()) : 100;
+                    resultadoDiv.innerText = `Información: Nombre: ${nombre}, Localidad: ${localidad}, Valor: ${valorInfo}.`;
+                    break;
+
+                case "4":
+                    const numRecursivo = parseInt(valor);
+                    if (isNaN(numRecursivo) || numRecursivo < 0) {
+                        resultadoDiv.innerText = "Por favor, ingrese un número entero no negativo.";
+                    } else {
+                        resultadoDiv.innerText = `El factorial recursivo de ${numRecursivo} es ${factorialRecursivo(numRecursivo)}.`;
+                    }
+                    break;
+
+                default:
+                    resultadoDiv.innerText = "Seleccione una opción válida.";
+                    break;
+            }
+        }
+        // Funciones
+        function factorial(num) {
+            let resultado = 1;
+            for (let i = 1; i <= num; i++) {
+                resultado *= i;
+            }
+            return resultado;
+        }
+
+        function suma(...args) {
+            return args.reduce((acc, curr) => acc + curr, 0);
+        }
+
+        function informacion(nombre, localidad = "LAS PALMAS DE G.C.", valor = 100) {
+            return `Nombre: ${nombre}, Localidad: ${localidad}, Valor: ${valor}`;
+        }
+
+        function factorialRecursivo(num) {
+            if (num <= 1) return 1;
+            return num * factorialRecursivo(num - 1); // Recursiva
+        }
+    </script>
+</body>
+</html>

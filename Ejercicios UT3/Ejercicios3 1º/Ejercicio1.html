@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Función 1</title>
+    <style>
+        body {
+            background-color: aliceblue;
+        }
+        .vuelta {
+            position: absolute;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .vuelta:hover {
+            text-decoration: underline;
+        }
+        section {
+            width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        h1 {
+            width: 180px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        button {
+            background-color: rgb(250, 110, 110);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            margin-left: 250px;
+            padding: 15px;
+            font-size: 25px;
+            transition: transform 0.5s;
+        }
+        button:hover {
+            transform: scale(1.07);
+        }
+    </style>
+    <script>
+        function validar() {
+            var valor = prompt("¿Cuánto es 14 + 5?");
+            var num = parseInt(valor);
+            var resultado = devolver(num);
+            alert(resultado) /* De esta manera evitamos usar try-catch */
+        }
+        function devolver(num) {
+            if (isNaN(num)){
+                return "Formato Incorrecto, escriba un número.";
+            }
+            if (num === 14+5) {
+                return "Correcto!";
+            }
+            else {
+                return "Incorrecto, la respuesta es: " + (14+5);
+            }
+        }
+    </script>
+</head>
+<body>
+    <section>
+    <a class="vuelta" href="../indice3.html">Volver</a>
+    <h1>UT3 - Ejercicio 1</h1>
+    <p> Realizar un programa que solicite al usuario el resultado de 
+        una operación aritmética dada. Utilizar dos funciones. La primera captura el 
+        resultado introducido por el usuario e invoca  otra función que verifica si el 
+        resultado es correcto. En esta segunda función utilizaremos return para devolver el 
+        resultado. </p>
+    <button onclick="validar()">Iniciar</button>
+    </section>
+</body>
+</html>

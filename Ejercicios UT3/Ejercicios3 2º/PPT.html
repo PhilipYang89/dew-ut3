@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piedra, Papel o Tijera</title>
+    <style>
+        /* Para futuras versiones intentar realizar estilo para el resultado
+        haciendo que sea de un color distinto: Victoria = Verde, Derrota = Rojo
+        Empate = Amarillo ... habría que indagar en si se aplica desde estilo o
+        si sería mejor hacerlo desde el script en sí */
+        body {
+            text-align: center;
+            margin: 40px;
+        }
+        .vuelta {
+            position: absolute;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            font-size: 18px;
+            margin-left: -180px;
+        }
+        .vuelta:hover {
+            text-decoration: underline;
+        }
+        button {
+            background-color: rgb(185, 16, 16);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 20px;
+            transition: transform 0.5s;
+        }
+        button:hover {
+            transform: scale(1.07);
+        }
+        img {
+            width: 200px;
+            height: auto; 
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .partida {
+            display: flex;
+        }
+        .column {
+            flex: 1; /* Para ocupar la mitad de la sección */
+            display: flex;
+            flex-direction: column; /* Stack title and image vertically */
+            justify-content: center; /* Para centrar verticalmente */
+            align-items: center; /* Para centrar horizontalmente */
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Piedra, Papel o Tijera</h1>
+    <a class="vuelta" href="../indice3.html">Volver</a>
+    <br>
+    <h2>Elige tu arma:</h2>
+    <label><input type="radio" name="choice" value="0" onclick="Eleccion()">Piedra</label>
+    <label><input type="radio" name="choice" value="1" onclick="Eleccion()">Papel</label>
+    <label><input type="radio" name="choice" value="2" onclick="Eleccion()">Tijera</label>
+    <br><br>
+
+    <button onclick="jugar()">Jugar</button>
+    <div class="partida">
+    <div class="column">
+    <h2>Tu Elección:</h2>
+    <img id="eleccionJugador" style="display: none;">
+    </div>
+    <div class="column">
+    <h2>Máquina:</h2>
+    <img id="maquina">
+    </div>
+    </div>
+    
+    <div class="result" id="resultado"></div>
+
+    <script>
+        function Eleccion() {
+            const opciones = ["../img/Rock.png", "../img/Paper.png", "../img/Scissors.png"];
+            const eleccionJugador = document.querySelector('input[name="choice"]:checked').value;
+            const jugadorImg = document.getElementById("eleccionJugador");
+            jugadorImg.src = opciones[eleccionJugador];
+            jugadorImg.style.display = "block"; // Para mostrar la imagen de la elección del jugador
+        }
+
+        function jugar() {
+            const maquinaImg = document.getElementById("maquina");
+            const resultado = document.getElementById("resultado");
+            const opciones = ["../img/Rock.png", "../img/Paper.png", "../img/Scissors.png"];
+            const jugadorEleccion = document.querySelector('input[name="choice"]:checked').value;
+
+            let i = 0;
+            const interval = setInterval(() => {
+                const aleatorio = Math.floor(Math.random() * 3);
+                maquinaImg.src = opciones[aleatorio];
+                i++;
+                if (i === 20) {
+                    clearInterval(interval);
+                    const maquinaEleccion = Math.floor(Math.random() * 3); // 0 = piedra, 1 = papel, 2 = tijera
+                    maquinaImg.src = opciones[maquinaEleccion]; // Para mostrar el resultado de la máquina
+
+                    // Determinamos el resultado:
+                    if (jugadorEleccion == maquinaEleccion) {
+                        resultado.innerText = "¡Es un empate!";
+                    } else if (
+                        (jugadorEleccion == 0 && maquinaEleccion == 2) || // Piedra > Tijera
+                        (jugadorEleccion == 1 && maquinaEleccion == 0) || // Papel > Piedra
+                        (jugadorEleccion == 2 && maquinaEleccion == 1)    // Tijera > Papel
+                    ) {
+                        resultado.innerText = "¡Has ganado! :)";
+                    } else {
+                        resultado.innerText = "¡Has perdido! :(";
+                    }
+                }
+            }, 100); // Para cambiar la imagen cada 100 ms
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Función 3</title>
+    <style>
+        body {
+            background-color: aliceblue;
+        }
+        .vuelta {
+            position: absolute;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .vuelta:hover {
+            text-decoration: underline;
+        }
+        section {
+            width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        h1 {
+            width: 180px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        p {
+            font-size: 18px;
+        }
+        button {
+            background-color: rgb(110, 175, 250);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            margin-left: 230px;
+            padding: 15px;
+            font-size: 25px;
+            transition: transform 0.5s;
+        }
+        button:hover {
+            transform: scale(1.07);
+        }
+        #image {
+            display: none;
+            margin-top: 10px;
+            width: 100%;
+        }
+    </style>
+    <script>
+        function mostrarLoop() { 
+            /* // Ejemplo de: for loop
+            // Pros: Full control over the index; can use complex conditions.
+            // Cons: More prone to errors (out of bounds, etc.).
+            const array = [1, 2, 3, 4, 5];
+            for (let i = 0; i < array.length; i++) {
+                forOutput += array[i] + " ";
+            }
+
+            // Ejemplo de: forEach loop
+            // Pros: Cleaner syntax, easy to use; does not require index handling.
+            // Cons: Cannot use 'break' or 'continue', cannot be applied to objects.
+            array.forEach((element) => {
+                forEachOutput += element + " ";
+            });
+
+            // Ejemplo de: for...in loop
+            // Pros: Great for iterating over properties of objects.
+            // Cons: Can iterate over inherited properties, not recommended for arrays.
+            const object = { a: 1, b: 2, c: 3 };
+            for (let key in object) {
+                forInOutput += key + ": " + object[key] + " ";
+            }
+
+            // Ejemplo de: for...of loop
+            // Pros: Ideal for iterating over arrays and other objects, easy syntax.
+            // Cons: Cannot be used with plain objects (limited to iterables).
+            for (let value of array) {
+                forOfOutput += value + " ";
+            }  */
+            document.getElementById("image").style.display = "block";
+        }
+    </script>
+    </head>
+    <body>
+        <section>
+        <a class="vuelta" href="../indice3.html">Volver</a>
+        <h1>UT3 - Ejercicio 3</h1>
+        <p> Realizar un programa que contenga las diferencias entre los loops: <br> 
+            - for, forEach, for in y for of. <br>
+           En el mismo código explicar las diferencias, pros y contras, de cada uno de
+           ellos.
+        </p>
+        <button onclick="mostrarLoop()">Visualizar</button>
+        <img id="image" src="../img/loops.png">
+    </body>
+    </html>
